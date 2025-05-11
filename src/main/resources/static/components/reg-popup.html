@@ -1,0 +1,21 @@
+<div id="register-popup" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden">
+    <div class="bg-white p-6 rounded shadow-md w-full max-w-sm">
+        <h2 class="text-xl font-bold mb-4" data-i18n="register">إنشاء حساب</h2>
+        <form id="registerForm">
+            <label>
+                <input name="username" type="text" placeholder="Username" class="w-full mb-2 p-2 border rounded" />
+            </label>
+            <label>
+                <input name="email" type="email" placeholder="Email" class="w-full mb-2 p-2 border rounded" />
+            </label>
+            <label>
+                <input name="password" type="password" placeholder="Password" class="w-full mb-2 p-2 border rounded" />
+            </label>
+            <label>
+                <input name="confirmPassword" type="password" placeholder="Confirm Password" class="w-full mb-4 p-2 border rounded" />
+            </label>
+            <button type="submit" class="bg-green-600 text-white px-4 py-2 rounded w-full" data-i18n="register">تسجيل</button>
+        </form>
+        <button onclick="toggleRegister()" class="mt-4 text-sm text-gray-500 underline" data-i18n="close">إغلاق</button>
+    </div>
+</div>

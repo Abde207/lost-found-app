@@ -1,0 +1,40 @@
+<nav class="bg-white shadow p-4 flex justify-between items-center">
+  <!-- العنوان -->
+  <div class="text-xl font-bold" data-i18n="appTitle">تطبيق المفقودات والموجودات</div>
+
+  <!-- القوائم على الشاشات الكبيرة -->
+  <div class="hidden md:flex space-x-4" id="desktop-menu">
+    <button onclick="loadItems('lost')" class="btn" data-i18n="lost">المفقودات</button>
+    <button onclick="loadItems('found')" class="btn" data-i18n="found">الموجودات</button>
+    <button onclick="togglePopup('lost')" class="hidden-if-not-loggedin btn bg-blue-500 text-white rounded px-3 py-1" data-i18n="reportLost">أعلنت عن فقدان</button>
+    <button onclick="togglePopup('found')" class="hidden-if-not-loggedin btn bg-green-500 text-white rounded px-3 py-1" data-i18n="reportFound">أعلنت عن إيجاد</button>
+    <button onclick="toggleLogin()" class="hidden-if-loggedin btn" data-i18n="login">تسجيل الدخول</button>
+    <button onclick="toggleRegister()" class="hidden-if-loggedin btn" data-i18n="reg">تسجيل مستخدم جديد</button>
+    <button onclick="removeToken()" class="hidden-if-not-loggedin btn" data-i18n="logout">تسجيل الخروج</button>
+    <label>
+      <select onchange="setLanguage(this.value)" class="border rounded p-1">
+        <option value="ar">العربية</option>
+        <option value="en">English</option>
+      </select>
+    </label>
+  </div>
+
+  <!-- زر القائمة للأجهزة الصغيرة -->
+  <button class="md:hidden" onclick="toggleMobileMenu()">☰</button>
+</nav>
+
+<!-- قائمة القوائم على الأجهزة الصغيرة -->
+<div id="mobile-menu" class="hidden md:hidden flex flex-col space-y-2 mt-2">
+  <button onclick="loadItems('lost')" class="btn" data-i18n="lost">المفقودات</button>
+  <button onclick="loadItems('found')" class="btn" data-i18n="found">الموجودات</button>
+  <button onclick="togglePopup('lost')" class="hidden-if-not-loggedin report-lost-btn btn bg-blue-500 text-white rounded px-3 py-1" data-i18n="reportLost">أعلنت عن فقدان</button>
+  <button onclick="togglePopup('found')" class="hidden-if-not-loggedin report-found-btn btn bg-green-500 text-white rounded px-3 py-1" data-i18n="reportFound">أعلنت عن إيجاد</button>
+  <button onclick="toggleLogin()" class="hidden-if-loggedin login-btn btn" data-i18n="login">تسجيل الدخول</button>
+  <button onclick="removeToken()" class="hidden-if-not-loggedin btn" data-i18n="logout">تسجيل الخروج</button>
+  <label>
+    <select onchange="setLanguage(this.value)" class="border rounded p-1">
+      <option value="ar">العربية</option>
+      <option value="en">English</option>
+    </select>
+  </label>
+</div>

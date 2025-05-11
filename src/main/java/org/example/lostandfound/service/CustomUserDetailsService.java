@@ -34,7 +34,7 @@ public class CustomUserDetailsService implements UserDetailsService {
     }
 
     private static User toUser(UserEntity user) {
-        return new User(user.getUsername(), user.getPassword(), List.of(new SimpleGrantedAuthority(user.getRole())));
+        return new User(user.getUsername(), user.getPassword(), List.of(new SimpleGrantedAuthority("ROLE_" + user.getRole())));
     }
 
 

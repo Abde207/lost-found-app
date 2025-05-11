@@ -7,9 +7,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
 import javax.crypto.SecretKey;
-import java.security.Key;
-import java.security.SecureRandom;
-import java.util.Base64;
 import java.util.Date;
 
 @Component
@@ -20,7 +17,7 @@ public class JwtService {
         return Jwts.builder()
                 .subject(userDetails.getUsername())
                 .issuedAt(new Date())
-                .expiration(new Date(System.currentTimeMillis() + 1000 * 60 * 60 * 10)
+                .expiration(new Date(System.currentTimeMillis() + 1000 * 60 * 60 * 10))
                         .signWith(SECRET_KEY, SignatureAlgorithm.HS256)
                         .compact();
     }

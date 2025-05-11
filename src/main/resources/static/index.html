@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title data-i18n="appTitle">تطبيق المفقودات والموجودات</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 font-sans">
+
+  <!-- Navbar -->
+  <div id="navbar-container"></div>
+
+  <!-- Mobile Menu -->
+  <div id="mobile-menu" class="hidden md:hidden bg-white shadow p-4 space-y-2"></div>
+
+  <!-- Main content -->
+  <main class="p-4">
+    <div id="items-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"></div>
+  </main>
+
+  <!-- Popups -->
+  <div id="popup-login-container"></div>
+  <div id="popup-reg-container"></div>
+  <div id="popup-lost-container"></div>
+  <div id="popup-found-container"></div>
+
+  <!-- Scripts -->
+  <script src="lang.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

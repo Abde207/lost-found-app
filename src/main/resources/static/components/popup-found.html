@@ -1,0 +1,22 @@
+<div id="popup-found" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden">
+  <div class="bg-white p-6 rounded shadow-md w-full max-w-md">
+    <h2 class="text-xl font-bold mb-4" data-i18n="foundTitle">أعلن عن شي تم إيجاده</h2>
+    <form id="foundForm">
+      <label>
+        <input type="text" name="name" placeholder="الاسم" class="w-full mb-2 p-2 border rounded" required />
+      </label>
+      <label>
+        <textarea name="description" placeholder="الوصف" class="w-full mb-2 p-2 border rounded" required></textarea>
+      </label>
+      <label>
+        <input type="text" name="category" placeholder="الفئة" class="w-full mb-2 p-2 border rounded" required />
+      </label>
+      <label>
+        <input type="date" name="foundDate" class="w-full mb-2 p-2 border rounded" required />
+      </label>
+      <input type="file" id="imageInput" class="w-full mb-2" accept="image/*" />
+      <button type="submit" class="bg-green-500 text-white px-4 py-2 rounded" data-i18n="send">أرسل</button>
+      <button type="button" onclick="togglePopup('found')" class="ml-2 text-sm underline" data-i18n="close">إغلاق</button>
+    </form>
+  </div>
+</div>
