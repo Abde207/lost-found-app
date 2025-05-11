@@ -1,0 +1,150 @@
+openapi: 3.0.3
+info:
+  title: Lost and Found API
+  version: 1.0.0
+  description: API لإدارة المفقودات والموجودات
+servers:
+  - url: http://localhost:8080/api
+paths:
+  /auth/login:
+    post:
+      summary: تسجيل الدخول
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                username:
+                  type: string
+                password:
+                  type: string
+              required: [username, password]
+      responses:
+        '200':
+          description: JWT token
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  token:
+                    type: string
+
+  /items/lost:
+    get:
+      summary: جلب العناصر المفقودة
+      responses:
+        '200':
+          description: قائمة المفقودات
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Item'
+    post:
+      summary: إضافة عنصر مفقود
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ItemRequest'
+      responses:
+        '201':
+          description: تم إنشاء العنصر
+
+  /items/found:
+    get:
+      summary: جلب العناصر الموجودة
+      responses:
+        '200':
+          description: قائمة الموجودات
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Item'
+    post:
+      summary: إضافة عنصر تم إيجاده
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ItemRequest'
+      responses:
+        '201':
+          description: تم إنشاء العنصر
+
+  /files:
+    post:
+      summary: رفع صورة
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                file:
+                  type: string
+                  format: binary
+      responses:
+        '200':
+          description: تم رفع الصورة
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+
+components:
+  schemas:
+    Item:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        category:
+          type: string
+        lostDate:
+          type: string
+          format: date
+        foundDate:
+          type: string
+          format: date
+        imageUrl:
+          type: string
+
+    ItemRequest:
+      type: object
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        category:
+          type: string
+        lostDate:
+          type: string
+          format: date
+        foundDate:
+          type: string
+          format: date
+        imageId:
+          type: string
+      required:
+        - name
+        - description
+        - category
+        - imageId
