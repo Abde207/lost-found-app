@@ -24,7 +24,6 @@ public class ItemEntity {
     @Enumerated(EnumType.STRING)
     private ItemType itemType;
 
-    // Getters and Setters
     public Long getId() {
         return id;
     }

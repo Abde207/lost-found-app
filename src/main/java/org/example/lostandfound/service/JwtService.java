@@ -20,9 +20,9 @@ public class JwtService {
         return Jwts.builder()
                 .subject(userDetails.getUsername())
                 .issuedAt(new Date())
-                .expiration(new Date(System.currentTimeMillis() + 1000 * 60 * 60 * 10)) // 10 ساعات
-                .signWith(SECRET_KEY, SignatureAlgorithm.HS256)
-                .compact();
+                .expiration(new Date(System.currentTimeMillis() + 1000 * 60 * 60 * 10)
+                        .signWith(SECRET_KEY, SignatureAlgorithm.HS256)
+                        .compact();
     }
 
 
