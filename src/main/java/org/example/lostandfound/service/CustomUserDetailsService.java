@@ -20,11 +20,10 @@ public class CustomUserDetailsService implements UserDetailsService {
     }
 
     @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+    public UserDetails loadUserByUsername(String username)  {
         InputType inputType = InputType.inputType(username);
         if (InputType.INVALID.equals(inputType))
             throw new IllegalStateException("invalid username or email");
-
 
         return (InputType.USERNAME.equals(inputType)
                 ? userRepository.findByUsername(username)
@@ -36,6 +35,4 @@ public class CustomUserDetailsService implements UserDetailsService {
     private static User toUser(UserEntity user) {
         return new User(user.getUsername(), user.getPassword(), List.of(new SimpleGrantedAuthority("ROLE_" + user.getRole())));
     }
-
-
 }

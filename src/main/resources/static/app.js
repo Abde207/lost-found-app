@@ -1,4 +1,4 @@
-const HOST_URL="http://localhost:8080"
+const HOST_URL="http://localhost:8888"
 const API_URL = HOST_URL + '/api';
 let imageId = null;
 

@@ -8,7 +8,7 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
+import org.springframework.security.config.annotation.web.configurers.HeadersConfigurer;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -34,7 +34,20 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.cors(cors -> cors.configurationSource(corsConfigurationSource()))
-                .csrf(AbstractHttpConfigurer::disable)
+                .csrf(csrf -> csrf.ignoringRequestMatchers(
+                        "/h2-console/**",
+                        "/auth/**",
+                        "/",
+                        "/**js",
+                        "/**css",
+                        "/**html",
+                        "/components/**",
+                        "/api/items/**",
+                        "/api/images/**",
+                        "/api/items/**",
+                        "/api/images/**"
+                ))
+                .headers(headers -> headers.frameOptions(HeadersConfigurer.FrameOptionsConfig::sameOrigin))
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/auth/**").permitAll()
                         .requestMatchers("/").permitAll()
@@ -42,14 +55,16 @@ public class SecurityConfig {
                         .requestMatchers("/**css").permitAll()
                         .requestMatchers("/**html").permitAll()
                         .requestMatchers("/components/**").permitAll()
-                        .requestMatchers(HttpMethod.GET,"/api/items/**").permitAll()
-                        .requestMatchers(HttpMethod.GET,"/api/images/**").permitAll()
-                        .requestMatchers(HttpMethod.POST,"/api/items/**").hasRole("USER")
-                        .requestMatchers(HttpMethod.POST,"/api/images/**").hasRole("USER")
+                        .requestMatchers(HttpMethod.GET, "/api/items/**").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/api/images/**").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/api/items/**").hasRole("USER")
+                        .requestMatchers(HttpMethod.POST, "/api/images/**").hasRole("USER")
+                        .requestMatchers("/h2-console/**").permitAll()
                         .anyRequest().authenticated()
                 )
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
+
         return http.build();
     }
 
