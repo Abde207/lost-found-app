@@ -1,6 +1,6 @@
 const i18n = {
   ar: {
-    appTitle: "تطبيق المفقودات والموجودات",
+    appTitle: "CampusFinder",
     lost: "المفقودات",
     found: "الموجودات",
     reportLost: "أعلنت عن فقدان",
@@ -20,7 +20,7 @@ const i18n = {
     logout: "تسجيل الخروج"
   },
   en: {
-    appTitle: "Lost and Found App",
+    appTitle: "CampusFinder",
     lost: "Lost Items",
     found: "Found Items",
     reportLost: "Report Lost",
